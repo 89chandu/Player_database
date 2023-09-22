@@ -1,0 +1,23 @@
+<!-- views/players.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Player List</title>
+</head>
+<body>
+    <h1>Player List</h1>
+    
+    <!-- Search form -->
+    <form method="GET" action="/players">
+        <input type="text" name="search" placeholder="Search by name">
+        <button type="submit">Search</button>
+    </form>
+    
+    <ul>
+        <% players.forEach(function(player) { %>
+            <li><a href="/players/<%= player.id %>"><%= player.name %></a></li>
+        <% }); %>
+    </ul>
+</body>
+</html>

@@ -1,20 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Player Search Results</title>
+    <meta charset="UTF-8">
+    <title>Player Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            text-align: center; /* Center-align text within li element */
+        }
+
+        p {
+            margin: 5px 0;
+            text-align: center; /* Center-align text within p element */
+            max-width: 80%; /* Limit the maximum width of the description text */
+            margin: 0 auto; /* Center-align the description text horizontally */
+            max-height: 3em; /* Limit the maximum height to 2-3 lines */
+            overflow: hidden; /* Hide overflow text */
+            white-space: nowrap; /* Prevent text from wrapping */
+            text-overflow: ellipsis; /* Show ellipsis (...) for long text */
+        }
+
+        img {
+            max-width: 200px;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: inline-block;
+            text-align: center; /* Center-align text within a element */
+        }
+
+        a:hover {
+            background-color: #555;
+        }
+    </style>
 </head>
 <body>
-  <h1>Search Results</h1>
-  <ul>
-    <% players.forEach(player => { %>
-      <li>
-        <p>Name: <%= player.name %></p>
-        <p>Age: <%= player.age %></p>
-        <p>Description: <%= player.description %></p>
-        <a href="/players/edit/<%= player.id %>">Edit</a>
-      </li>
-    <% }); %>
-  </ul>
+    <h1>Search Results</h1>
+    <ul>
+        <% players.forEach(player => { %>
+            <li>
+                <p>Name: <%= player.name %></p>
+                <p>Age: <%= player.age %></p>
+                <p>Description: <%= player.description %></p>
+                <img src="<%= player.image_url %>" alt="<%= player.name %> Image">
+                <p>Century: <%= player.century %></p>
+                <p>Fifty: <%= player.fifty %></p>
+                <p>Runs: <%= player.runs %></p>
+                <p>Matches Played: <%= player.matches_played %></p>
+                <a href="/players/edit/<%= player.id %>">Edit</a>
+            </li>
+        <% }); %>
+    </ul>
 </body>
 </html>

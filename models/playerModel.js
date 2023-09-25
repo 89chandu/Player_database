@@ -82,6 +82,21 @@ class Player {
     });
   }
 
+  static updatePlayer(id, updatedData) {
+    return new Promise((resolve, reject) => {
+      db.query('UPDATE players SET ? WHERE id = ?', [updatedData, id], (err, result) => {
+        if (err) {
+          return reject(err);
+        }
+        if (result.affectedRows === 0) {
+          return reject(new Error('Player not found'));
+        }
+        resolve(result);
+      });
+    });
+  
+}
+
   // Define other class methods for your Player model here
 
   static searchByName(name) {

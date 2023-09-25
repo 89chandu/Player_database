@@ -53,6 +53,27 @@ exports.getPlayerEditForm = async (req, res) => {
   }
 };
 
+exports.updatePlayer = async (req, res) => {
+  try {
+    const playerId = req.params.id;
+    const updatedPlayerData = req.body;
+
+    // Update the player in the database
+    const playerUpdated = await Player.updatePlayer(playerId, updatedPlayerData);
+
+    if (playerUpdated) {
+      console.log('Player updated successfully.');
+      res.redirect('/players'); // Redirect to the player list or appropriate page
+    } else {
+      console.error('Player not found or no changes made.');
+      res.status(404).send('Player not found or no changes made.');
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error updating player');
+  }
+};
+
 exports.addPlayer = async (req, res) => {
   try {
     // Retrieve form data from the request body
